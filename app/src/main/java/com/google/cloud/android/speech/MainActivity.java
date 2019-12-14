@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
         setContentView(R.layout.activity_main);
         bundle=savedInstanceState;
         btnChay= (Button) findViewById(R.id.btnChay);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         btnChay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,14 +130,10 @@ public class MainActivity extends AppCompatActivity implements MessageDialogFrag
                     setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
                     mStatus = (TextView) findViewById(R.id.status);
                     mText = (TextView) findViewById(R.id.text);
-
-                    mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-                    mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     final ArrayList<String> results =bundle == null ? null :
                             bundle.getStringArrayList(STATE_RESULTS);
                     mAdapter = new ResultAdapter(results);
                     mRecyclerView.setAdapter(mAdapter);
-                    // Gọi StopRecognize
                 }
                 catch (Exception ex){}
             }
